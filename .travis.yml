@@ -21,3 +21,17 @@ after_success:
   - docker push jazzrose/multi-nginx
   - docker push jazzrose/multi-server
   - docker push jazzrose/multi-worker
+
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'eu-north-1'
+  app: 'multi-docker'
+  env: 'Multi-docker-env-1'
+  bucket_name: 'elasticbeanstalk-eu-north-1-445718290187'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
